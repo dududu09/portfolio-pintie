@@ -51,7 +51,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
   max-width:var(--max-w);margin:0 auto;
   padding:32px 32px 48px;
   display:grid;grid-template-columns:1fr 300px;gap:48px;
-  align-items:center;width:100%;
+  align-items:center;width:100%;position:relative;
 }
 .hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--ink3);margin-bottom:22px;
@@ -358,7 +358,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
 .stat-panel.after .stat-sub-text{color:rgba(255,255,255,.6);}
 .stat-divider{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:0 16px;background:var(--bg2);border-left:.5px solid var(--line);border-right:.5px solid var(--line);
+  padding:0 16px;
 }
 .stat-arrow-icon{font-size:24px;color:var(--tan);}
 .stat-growth-badge{
@@ -592,8 +592,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
 .mt-problem-stat{display:flex;align-items:center;gap:16px;margin-top:20px;padding:16px 20px;background:var(--paper-dark);border-radius:8px;border:.5px solid var(--line);}
 .mt-problem-num{font-family:'EB Garamond',serif;font-size:40px;color:var(--ink3);line-height:1;flex-shrink:0;}
 .mt-problem-desc{font-size:12px;color:var(--ink3);line-height:1.7;}
-.mt-opt-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;}
-.mt-opt-card{padding:16px;background:var(--paper-dark);border-radius:8px;border:.5px solid var(--line);}
+.mt-opt-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;position:relative;}
+.mt-opt-card{padding:16px;background:var(--paper-dark);border-radius:8px;border:none;position:relative;}
+.mt-opt-card::before{content:'';position:absolute;inset:-2px;border-radius:10px;border:1.5px solid #b8b0a0;pointer-events:none;}
 .mt-opt-card-num{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink3);margin-bottom:8px;}
 .mt-opt-card-desc{font-size:13px;color:var(--ink2);line-height:1.65;}
 .stat-before-after{width:100%;max-width:100%;}
@@ -625,6 +626,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
 @keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .mt-insight-quote{margin-top:16px;padding:16px 20px;border-left:2px solid var(--ink3);font-family:'EB Garamond',serif;font-size:17px;color:var(--ink2);line-height:1.75;background:var(--paper-dark);border-radius:0 6px 6px 0;}
 .sec-step-label{font-family:'EB Garamond',serif;font-size:18px;font-weight:400;color:var(--ink);margin-bottom:14px;line-height:1.4;}
+
+.mt-opt-card::before{filter:url(#hand-draw);}
 </style>
 </head>
 <body>
@@ -663,6 +666,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
           </div>
           <div class="polaroid-caption">DU XUEYING · 2026</div>
         </div>
+        <img src="./images/hand-dog.png" style="position:absolute;left:-600px;bottom:-80px;width:984px;height:auto;pointer-events:none;z-index:10;">
         <div class="hero-sticker-r" style="position:absolute;left:10px;bottom:60px;right:auto;top:auto;align-items:flex-start;">
           <div style="background:var(--yellow);border-radius:4px;padding:8px 12px;font-family:'Space Mono',monospace;font-size:11px;line-height:1.7;color:var(--yellow-dark);transform:rotate(-1.5deg);box-shadow:2px 3px 0 rgba(0,0,0,.07);">AI产品实习<br>求职中</div>
         </div>
@@ -967,9 +971,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
             </div>
           </div>
           <div class="contact-links">
-            <div class="contact-link"><span class="cl-label">微信</span><span>（简历可提供）</span></div>
-            <div class="contact-link"><span class="cl-label">邮箱</span><span>（简历可提供）</span></div>
-            <div class="contact-link"><span class="cl-label">学校</span><span>设计学院 · 设计学硕士</span></div>
+            <div class="contact-link"><span class="cl-label">微信</span><span>15533200709</span></div>
+            <div class="contact-link"><span class="cl-label">邮箱</span><span>duxueyingdudu@163.com</span></div>
+            <div class="contact-link"><span class="cl-label">学校</span><span>上应大·设计硕士在读</span></div>
           </div>
         </div>
         <div class="footer-bar">
@@ -983,6 +987,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
 
 <!-- MEITUAN -->
 <div id="page-meituan" class="page">
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <filter id="hand-draw">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
   <div class="detail-hero">
     <div class="detail-hero-inner">
       <button class="back-btn" onclick="showPage('home')"><span class="back-arrow">←</span> 返回首页</button>
@@ -1063,7 +1076,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
               <div class="mt-opt-card-num">③ 质量参差</div>
               <div class="mt-opt-card-desc">重构知识库颗粒度与文档结构，提升回答准确率</div>
             </div>
-          </div>
+                      </div>
         </div>
       </div>
     </div>
@@ -1238,7 +1251,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
             <div class="strategy-dir">
               <div class="sd-num">01</div>
               <div class="sd-content">
-                <div class="sd-title">热点话题 <span class="sd-tag">共鸣轴</span></div>
+                <div class="sd-title">热点话题 <span class="sd-tag">能引起共鸣的话题</span></div>
                 <div class="sd-body">找到普通人与 AI 生活的交叉点，让读者产生「这说的就是我」的分享欲</div>
                 <div class="sd-signal">↑ 传播深度</div>
               </div>
@@ -1246,7 +1259,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
             <div class="strategy-dir">
               <div class="sd-num">02</div>
               <div class="sd-content">
-                <div class="sd-title">降低门槛 <span class="sd-tag">实用轴</span></div>
+                <div class="sd-title">降低门槛 <span class="sd-tag">简单实用</span></div>
                 <div class="sd-body">策划「小白速成」「3步学会用AI做X」等低门槛选题，拓宽受众边界</div>
                 <div class="sd-signal">↑ 受众宽度</div>
               </div>
@@ -1254,7 +1267,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
             <div class="strategy-dir">
               <div class="sd-num">03</div>
               <div class="sd-content">
-                <div class="sd-title">深度内容 <span class="sd-tag">价值轴</span></div>
+                <div class="sd-title">深度内容 <span class="sd-tag">挖掘有价值的内容</span></div>
                 <div class="sd-body">发掘 AI 领域人物，做深度人物访谈与译稿。不做仅浮于表面的浅层内容</div>
                 <div class="sd-signal">↑ 内容权威性</div>
               </div>
@@ -1390,6 +1403,35 @@ function showPage(id){
 }
 function scrollToWorks(){setTimeout(()=>{document.getElementById('section-works')?.scrollIntoView({behavior:'smooth'})},50);}
 function scrollToContact(){setTimeout(()=>{document.getElementById('section-contact')?.scrollIntoView({behavior:'smooth'})},50);}
+
+// trackpad: two-finger swipe right to go home
+(function(){
+  const PAGES = ['page-meituan', 'page-36kr'];
+  let lastWheelTime = 0;
+  let accX = 0, accY = 0;
+  let resetTimer = null;
+
+  document.addEventListener('wheel', function(e) {
+    const active = document.querySelector('.page.active');
+    if (!active || !PAGES.includes(active.id)) return;
+
+    // accumulate delta
+    accX += e.deltaX;
+    accY += e.deltaY;
+
+    // reset accumulator after gesture pauses
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(function() { accX = 0; accY = 0; }, 150);
+
+    // swipe right = negative deltaX (Mac natural scrolling)
+    const now = Date.now();
+    if (accX < -120 && Math.abs(accX) > Math.abs(accY) * 1.5 && now - lastWheelTime > 800) {
+      lastWheelTime = now;
+      accX = 0; accY = 0;
+      showPage('home');
+    }
+  }, {passive: true});
+})();
 
 // swipe right with 2 fingers to go home
 (function(){

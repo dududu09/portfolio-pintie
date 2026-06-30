@@ -42,6 +42,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
   transition:color .2s,border-color .2s;cursor:pointer;}
 .nav-links a:hover{color:var(--ink);border-bottom-color:var(--tan);}
 
+/* HAMBURGER */
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;
+  flex-direction:column;gap:5px;z-index:210;}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--ink);
+  transition:transform .3s,opacity .3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
 /* PAGES */
 .page{display:none;}.page.active{display:block;}
 
@@ -207,7 +216,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
   margin-top: 2px;
 }
 @media(max-width:680px){
-  .pinboard { height: 680px; }
+  .pinboard { height: 580px; }
 }
 .contact-section{border-top:.5px solid var(--line);padding:64px 0 48px;}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
@@ -242,7 +251,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
   line-height:1.65;margin-bottom:28px;
   padding-left:18px;border-left:2px solid var(--tan);
 }
-@media(max-width:680px){.detail-quote{white-space:normal;}}
+@media(max-width:680px){.detail-quote{font-size:15px;white-space:normal;}}
 .meta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
 .meta-pill{font-size:12px;font-family:'Space Mono',monospace;color:var(--ink2);background:var(--bg2);
   border:.5px solid var(--line);border-radius:20px;padding:4px 14px;letter-spacing:.03em;}
@@ -601,22 +610,95 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
 
 /* MOBILE */
 @media(max-width:680px){
+  /* nav */
   .container,.nav-inner{padding:0 20px;}
+  .nav-hamburger{display:flex;}
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;
+    background:rgba(245,242,236,.97);backdrop-filter:blur(12px);
+    flex-direction:column;gap:0;padding:0;border-bottom:.5px solid var(--line);
+    box-shadow:0 8px 24px rgba(44,41,36,.1);}
+  .nav-links.open{display:flex;}
+  .nav-links li{list-style:none;}
+  .nav-links a{display:block;padding:16px 24px;font-size:14px;
+    border-bottom:.5px solid var(--line);letter-spacing:.06em;}
+  .nav-links li:last-child a{border-bottom:none;}
+
+  /* hero */
   .hero-inner{grid-template-columns:1fr;padding:32px 20px 48px;gap:28px;}
-  .sticker-cluster{height:200px;}
+  .hero-title{font-size:clamp(28px,7vw,42px);}
+  .hero-title-en{font-size:clamp(13px,3.5vw,16px);}
+  .sticker-cluster{height:180px;margin-top:-8px;}
+  .polaroid-frame{width:150px;padding:8px 8px 28px;transform:rotate(-2deg);}
+  .sticker-cluster > img[style*="hand-dog"]{width:400px !important;left:-200px !important;bottom:-40px !important;}
+  .hero-sticker-r{display:none !important;}
+
+  /* works */
   .works-grid{grid-template-columns:1fr;gap:12px;}
   .work-card-img{height:180px;}
+  .work-title{font-size:24px;}
+
+  /* detail */
   .detail-section-inner{grid-template-columns:1fr;gap:12px;padding:0 20px;}
   .sec-num{flex-direction:row;align-items:center;gap:10px;}
   .detail-hero-inner{padding:36px 20px 32px;}
-  .hero-sticker-r{display:none;}
+  .detail-title{font-size:clamp(30px,8vw,48px);}
+  .detail-quote{font-size:15px;white-space:normal;overflow:visible;animation:none;width:auto;}
+  .meta-row{gap:6px;}
+  .meta-pill{font-size:11px;padding:3px 10px;}
+  .sec-step-label{font-size:16px;}
+
+  /* 36kr & meituan */
   .kr-layout{grid-template-columns:1fr;}
+  .kr-new-grid{grid-template-columns:1fr;}
+  .kr-row-grid{grid-template-columns:1fr;}
+  .kr-row-card{border-left:none;border-top:.5px solid var(--line);padding-left:0;}
+  .kr-stat-row{grid-template-columns:1fr;}
+  .mac-wrap{margin-top:16px;}
+  .mac-content{min-height:200px;padding:10px;}
+  .wx-img{width:90px;height:60px;}
+  .wx-title{font-size:11px;}
+
+  /* strategy flow */
+  .strategy-flow{flex-direction:column;gap:0;overflow-x:visible;}
+  .strategy-node{width:100%;}
+  .strategy-arrow{flex-direction:row;padding:8px 0;}
+  .strategy-arrow svg{transform:rotate(90deg);}
+  .strategy-dir{gap:12px;}
+  .sd-num{font-size:18px;width:28px;}
+
+  /* process & stats */
   .process-flow-v2{flex-wrap:wrap;}
   .pf-step{min-width:40%;}
   .stat-before-after{flex-direction:column;}
   .stat-divider{flex-direction:row;padding:12px 16px;border-left:none;border-right:none;border-top:.5px solid var(--line);border-bottom:.5px solid var(--line);}
+  .stat-big-num{font-size:40px;}
+  .kr-stat-num{font-size:36px;}
+  .mt-opt-cards{grid-template-columns:1fr;}
+
+  /* playground tabs */
+  .pg-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;}
+  .pg-tab{flex-shrink:0;min-width:auto;padding:8px 12px 10px;font-size:10px;}
+  .pg-tab-label{gap:1px;}
+  .pg-tab-name{font-size:10px;}
+  .pg-tab-num{font-size:8px;}
+  .pg-room-inner{grid-template-columns:1fr;}
+  .pg-carousel{border-right:none;border-bottom:.5px solid var(--line);}
+  .pg-detail{padding:20px 18px 18px;}
+  .pg-detail-title{font-size:18px;}
+  .pg-detail-body{font-size:12px;}
+
+  /* contact */
   .contact-grid{grid-template-columns:1fr;gap:32px;}
   .contact-section,.sec-header{padding-left:0;padding-right:0;}
+  .contact-h2{font-size:28px;}
+
+  /* settle & misc */
+  .result-subs{flex-direction:column;gap:8px;}
+  .settle-row{font-size:13px;}
+  .cat-cards{gap:8px;}
+  .cat-card{padding:10px 14px;font-size:12px;}
+  .pinboard{height:580px;}
+  .footer-bar{flex-direction:column;gap:8px;align-items:flex-start;}
 }
 
 /* marquee ticker */
@@ -635,10 +717,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
 <nav>
   <div class="nav-inner">
     <span class="nav-logo" onclick="showPage('home')">DU XUEYING</span>
+    <button class="nav-hamburger" onclick="toggleNavMenu()" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
-      <li><a onclick="showPage('home');scrollToWorks()">实习经历</a></li>
-      <li><a onclick="showPage('home')">试验场</a></li>
-      <li><a onclick="showPage('home');scrollToContact()">联系我</a></li>
+      <li><a onclick="showPage('home');scrollToWorks();closeNavMenu()">实习经历</a></li>
+      <li><a onclick="showPage('home');closeNavMenu()">试验场</a></li>
+      <li><a onclick="showPage('home');scrollToContact();closeNavMenu()">联系我</a></li>
     </ul>
   </div>
 </nav>
@@ -1394,6 +1479,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
 </div>
 
 <script>
+function toggleNavMenu(){
+  var btn=document.querySelector('.nav-hamburger');
+  var links=document.querySelector('.nav-links');
+  btn.classList.toggle('open');
+  links.classList.toggle('open');
+}
+function closeNavMenu(){
+  var btn=document.querySelector('.nav-hamburger');
+  var links=document.querySelector('.nav-links');
+  btn.classList.remove('open');
+  links.classList.remove('open');
+}
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const el=document.getElementById('page-'+id);

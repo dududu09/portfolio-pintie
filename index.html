@@ -722,7 +722,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
     </button>
     <ul class="nav-links">
       <li><a onclick="showPage('home');scrollToWorks();closeNavMenu()">实习经历</a></li>
-      <li><a onclick="showPage('home');closeNavMenu()">试验场</a></li>
+      <li><a onclick="showPage('home');scrollToLab();closeNavMenu()">试验场</a></li>
       <li><a onclick="showPage('home');scrollToContact();closeNavMenu()">联系我</a></li>
     </ul>
   </div>
@@ -1045,7 +1045,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;
 
   
     <div class="container">
-      <div class="contact-section">
+      <div class="contact-section" id="section-contact">
         <div class="contact-grid">
           <div>
             <h2 class="contact-h2">联系我</h2>
@@ -1499,6 +1499,7 @@ function showPage(id){
   if(id==='36kr'){setTimeout(()=>animate36kr(),400);}
 }
 function scrollToWorks(){setTimeout(()=>{document.getElementById('section-works')?.scrollIntoView({behavior:'smooth'})},50);}
+function scrollToLab(){setTimeout(()=>{document.getElementById('section-lab')?.scrollIntoView({behavior:'smooth'})},50);}
 function scrollToContact(){setTimeout(()=>{document.getElementById('section-contact')?.scrollIntoView({behavior:'smooth'})},50);}
 
 // trackpad: two-finger swipe right to go home
